@@ -1,0 +1,73 @@
+public class SinglyLinkedList {
+
+    static class Node {
+        int value;
+        Node next;
+
+        Node(int value) {
+            this.value = value;
+            this.next = null;
+        }
+    }
+
+    private Node head;
+
+    public void insertAtBeginning(int value) {
+        Node newNode = new Node(value);
+        newNode.next = head;
+        head = newNode;
+        System.out.println(value + " inserted at the beginning.");
+    }
+
+    public void insertAtEnd(int value) {
+        Node newNode = new Node(value);
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        System.out.println(value + " inserted at the end.");
+    }
+
+    public void deleteFromBeginning() {
+        if (head == null) {
+            System.out.println("List is empty. Nothing to delete.");
+        } else {
+            System.out.println(head.value + " deleted from the beginning.");
+            head = head.next;
+        }
+    }
+
+    public void display() {
+        if (head == null) {
+            System.out.println("The list is empty.");
+            return;
+        }
+
+        Node current = head;
+        System.out.print("Linked List: ");
+        while (current != null) {
+            System.out.print(current.value + " → ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        SinglyLinkedList list = new SinglyLinkedList();
+
+        list.insertAtBeginning(10);
+        list.insertAtBeginning(5);
+        list.insertAtEnd(20);
+        list.insertAtEnd(25);
+        list.display();
+
+        list.deleteFromBeginning();
+        list.display();
+    }
+}
